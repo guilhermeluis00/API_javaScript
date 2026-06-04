@@ -1,6 +1,6 @@
-const express = require('express');
-const router = require('./router');
-const app = express();
+//const express = require('express');
+//const router = require('./router');
+//const app = express();
 
 const bcrypt = require('bcryptjs');
 const prisma = require('./lib/prisma');
@@ -31,6 +31,7 @@ async function cadastrarUsuario(req, res) {
   } catch (error) {
     if (error.code === 'P2002') {
       return res.status(400).json({ error: 'Este e-mail já está cadastrado.' });
+      console.log ('Erro de chave única: E-mail já existe no banco de dados.');
     }
     console.error(error);
     return res.status(500).json({ error: 'Erro interno ao cadastrar o usuário.' });
